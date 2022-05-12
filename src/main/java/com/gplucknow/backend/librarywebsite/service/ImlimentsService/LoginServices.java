@@ -1,11 +1,11 @@
-package com.gplucknow.backend.librarywebsite.service;
+package com.gplucknow.backend.librarywebsite.service.ImlimentsService;
 
 
 import com.gplucknow.backend.librarywebsite.Databaselayer.Model.Student;
 import com.gplucknow.backend.librarywebsite.Databaselayer.Reposetory.StudentRepo;
 import com.gplucknow.backend.librarywebsite.Entity.loginStudent;
 import com.gplucknow.backend.librarywebsite.Entity.visibalStudent;
-import org.apache.catalina.User;
+import com.gplucknow.backend.librarywebsite.service.studentServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,9 +13,11 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class LoginServices {
+public class LoginServices implements studentServiceInterface {
     @Autowired
     private StudentRepo studentRepo;
+
+@Override
     public ResponseEntity<?> logingenerate(loginStudent lg){
         List<Student> student= this.studentRepo.findByEnrollnumber(lg.getEnrollnumber());
         if (student.size()>0 && student.get(0).getDob()==lg.getDob()){
@@ -25,6 +27,8 @@ public class LoginServices {
             return new ResponseEntity<>("Student Not Found", HttpStatus.NOT_FOUND);
         }
     }
+
+@Override
     public ResponseEntity<?> getStudentdata(String UserToken){
         List<Student> studentList= this.studentRepo.findByUserToken(UserToken);
         if (studentList.size()>0){
