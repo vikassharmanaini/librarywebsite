@@ -20,7 +20,7 @@ public class LoginServices implements studentServiceInterface {
 @Override
     public ResponseEntity<?> logingenerate(loginStudent lg){
         List<Student> student= this.studentRepo.findByEnrollnumber(lg.getEnrollnumber());
-        if (student.size()>0 && student.get(0).getDob()==lg.getDob()){
+        if (student.size()>0 && student.get(0).getDob().equals(lg.getDob())){
             return new ResponseEntity<>(student.get(0).getUserToken(),HttpStatus.OK);
         }
         else {

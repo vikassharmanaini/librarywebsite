@@ -5,7 +5,6 @@ import lombok.*;
 @Setter
 @ToString
 @AllArgsConstructor
-@NoArgsConstructor
 public class visibalStudent {
     private String enroll;
     private String name;

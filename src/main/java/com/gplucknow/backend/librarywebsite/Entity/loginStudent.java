@@ -6,7 +6,6 @@ import lombok.*;
 @Setter
 @ToString
 @AllArgsConstructor
-@NoArgsConstructor
 public class loginStudent {
     private String enrollnumber;
     private String dob;
